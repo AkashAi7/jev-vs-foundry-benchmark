@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500" role="img" aria-labelledby="title desc">
+  <title id="title">Jev versus Microsoft Foundry: practical benchmark pilot</title>
+  <desc id="desc">A one-run benchmark of 18 synthetic hand-labelled cases across support triage, incident priority, and subscription intent. All three arms achieved 18 out of 18 correct. Foundry median latency was 2459 milliseconds, Jev 398 milliseconds, and hybrid 417 milliseconds. The hybrid escalated one of 18 cases. This small pilot does not establish general superiority.</desc>
+  <defs>
+    <style>
+      text { font-family: "Segoe UI", Arial, sans-serif; }
+      .eyebrow { font-size: 16px; font-weight: 700; letter-spacing: 2px; }
+      .title { font-size: 58px; font-weight: 750; letter-spacing: -1.5px; }
+      .subtitle { font-size: 22px; }
+      .section { font-size: 25px; font-weight: 700; fill: #153b45; }
+      .body { font-size: 14px; fill: #294b52; }
+      .small { font-size: 14px; fill: #49646a; }
+      .cardTitle { font-size: 19px; font-weight: 700; fill: #173d45; }
+      .metric { font-size: 42px; font-weight: 750; fill: #0f5f58; }
+      .label { font-size: 15px; font-weight: 650; fill: #173d45; }
+      .white { fill: #ffffff; }
+      .mutedWhite { fill: #c5dcda; }
+      .caps { font-size: 13px; font-weight: 700; letter-spacing: 1px; fill: #537078; }
+      .code { font-size: 14px; font-weight: 700; fill: #176b61; }
+    </style>
+  </defs>
+  <rect width="1200" height="1500" fill="#f3f6f4"/>
+  <rect width="1200" height="242" fill="#10343d"/>
+  <rect x="0" y="237" width="1200" height="5" fill="#26a78f"/>
+  <text x="64" y="55" class="eyebrow mutedWhite">JEV BENCHMARK LAB  /  PRACTICAL PILOT</text>
+  <text x="64" y="125" class="title white">Jev × Microsoft Foundry</text>
+  <text x="66" y="169" class="subtitle white">A confidence-gated cascade, tested against two standalone arms.</text>
+  <text x="66" y="204" class="small mutedWhite">18 hand-labelled cases  ·  3 decision tasks  ·  1 repetition  ·  54 observations</text>
+  <rect x="881" y="42" width="250" height="38" rx="19" fill="#1c5157"/>
+  <text x="1006" y="67" text-anchor="middle" class="eyebrow white" style="font-size:12px;letter-spacing:1px">LIVE RUN · 18 CASES / ARM</text>
+
+  <rect x="60" y="270" width="344" height="137" rx="14" fill="#ffffff" stroke="#d8e4e0"/>
+  <rect x="428" y="270" width="344" height="137" rx="14" fill="#ffffff" stroke="#d8e4e0"/>
+  <rect x="796" y="270" width="344" height="137" rx="14" fill="#ffffff" stroke="#d8e4e0"/>
+  <text x="84" y="327" class="metric">100%</text>
+  <text x="84" y="360" class="label">Accuracy · all three arms</text>
+  <text x="84" y="386" class="small">18 / 18 correct in this run, each</text>
+  <text x="452" y="327" class="metric">1.000</text>
+  <text x="452" y="360" class="label">Macro F1 · all three arms</text>
+  <text x="452" y="386" class="small">Same hand-labelled test set</text>
+  <text x="820" y="327" class="metric">1 / 18</text>
+  <text x="820" y="360" class="label">Hybrid Foundry escalations</text>
+  <text x="820" y="386" class="small">Jev confidence gate: 0.80</text>
+
+  <text x="64" y="455" class="section">Observed latency</text>
+  <text x="64" y="481" class="small">Milliseconds · successful observations · hybrid includes its sequential stages</text>
+  <rect x="60" y="501" width="1080" height="227" rx="14" fill="#ffffff" stroke="#d8e4e0"/>
+  <rect x="355" y="523" width="17" height="12" rx="4" fill="#16776c"/>
+  <text x="380" y="535" class="small">Median (p50)</text>
+  <rect x="507" y="523" width="17" height="12" rx="4" fill="#b9d6cf"/>
+  <text x="532" y="535" class="small">95th percentile (p95)</text>
+  <text x="915" y="535" class="caps">P50</text>
+  <text x="1037" y="535" class="caps">P95</text>
+
+  <text x="84" y="582" class="cardTitle">Foundry LLM</text>
+  <rect x="355" y="558" width="500" height="15" rx="7.5" fill="#edf2f0"/>
+  <rect x="355" y="558" width="204" height="15" rx="7.5" fill="#16776c"/>
+  <rect x="355" y="580" width="500" height="15" rx="7.5" fill="#edf2f0"/>
+  <rect x="355" y="580" width="500" height="15" rx="7.5" fill="#b9d6cf"/>
+  <text x="915" y="582" class="label">2,459 ms</text>
+  <text x="1037" y="582" class="label">6,026 ms</text>
+
+  <text x="84" y="646" class="cardTitle">Jev</text>
+  <rect x="355" y="622" width="500" height="15" rx="7.5" fill="#edf2f0"/>
+  <rect x="355" y="622" width="33" height="15" rx="7.5" fill="#16776c"/>
+  <rect x="355" y="644" width="500" height="15" rx="7.5" fill="#edf2f0"/>
+  <rect x="355" y="644" width="45" height="15" rx="7.5" fill="#b9d6cf"/>
+  <text x="915" y="646" class="label">398 ms</text>
+  <text x="1037" y="646" class="label">539 ms</text>
+
+  <text x="84" y="710" class="cardTitle">Foundry + Jev</text>
+  <rect x="355" y="686" width="500" height="15" rx="7.5" fill="#edf2f0"/>
+  <rect x="355" y="686" width="35" height="15" rx="7.5" fill="#16776c"/>
+  <rect x="355" y="708" width="500" height="15" rx="7.5" fill="#edf2f0"/>
+  <rect x="355" y="708" width="144" height="15" rx="7.5" fill="#b9d6cf"/>
+  <text x="915" y="710" class="label">417 ms</text>
+  <text x="1037" y="710" class="label">1,731 ms</text>
+
+  <text x="64" y="778" class="section">What the test cases probe</text>
+  <text x="64" y="803" class="small">Six cases per task · three standard + three edge cases</text>
+
+  <rect x="60" y="823" width="344" height="270" rx="14" fill="#ffffff" stroke="#d8e4e0"/>
+  <rect x="428" y="823" width="344" height="270" rx="14" fill="#ffffff" stroke="#d8e4e0"/>
+  <rect x="796" y="823" width="344" height="270" rx="14" fill="#ffffff" stroke="#d8e4e0"/>
+
+  <text x="82" y="857" class="caps">01 · SUPPORT TRIAGE</text>
+  <text x="82" y="887" class="cardTitle">Billing · Technical · Sales</text>
+  <text x="82" y="922" class="caps">EDGE CASES</text>
+  <text x="82" y="950" class="code">SUP-04</text>
+  <text x="148" y="950" class="body">Refund after outage is resolved</text>
+  <text x="148" y="973" class="small">Expected: Billing</text>
+  <text x="82" y="1003" class="code">SUP-05</text>
+  <text x="148" y="1003" class="body">Broken upgrade button, not pricing</text>
+  <text x="148" y="1026" class="small">Expected: Technical</text>
+  <text x="82" y="1056" class="code">SUP-06</text>
+  <text x="148" y="1056" class="body">Purchase question amid billing noise</text>
+  <text x="148" y="1079" class="small">Expected: Sales</text>
+
+  <text x="450" y="857" class="caps">02 · INCIDENT PRIORITY</text>
+  <text x="450" y="887" class="cardTitle">P1 · P2 · P3 policy</text>
+  <text x="450" y="922" class="caps">EDGE CASES</text>
+  <text x="450" y="950" class="code">PRI-04</text>
+  <text x="516" y="950" class="body">One customer, confirmed data loss</text>
+  <text x="516" y="973" class="small">Expected: P1</text>
+  <text x="450" y="1003" class="code">PRI-05</text>
+  <text x="516" y="1003" class="body">“URGENT”, one team, no data loss</text>
+  <text x="516" y="1026" class="small">Expected: P2</text>
+  <text x="450" y="1056" class="code">PRI-06</text>
+  <text x="516" y="1056" class="body">All-user outage, now resolved</text>
+  <text x="516" y="1079" class="small">Expected: P3</text>
+
+  <text x="818" y="857" class="caps">03 · REQUEST INTENT</text>
+  <text x="818" y="887" class="cardTitle">Cancel · Change · Information</text>
+  <text x="818" y="922" class="caps">EDGE CASES</text>
+  <text x="818" y="950" class="code">INT-04</text>
+  <text x="884" y="950" class="body">“Do not cancel” + invoice question</text>
+  <text x="884" y="973" class="small">Expected: Information</text>
+  <text x="818" y="1003" class="code">INT-05</text>
+  <text x="884" y="1003" class="body">Change billing, explicitly not cancel</text>
+  <text x="884" y="1026" class="small">Expected: Change</text>
+  <text x="818" y="1056" class="code">INT-06</text>
+  <text x="884" y="1056" class="body">Quoted cancellation, no action asked</text>
+  <text x="884" y="1079" class="small">Expected: Information</text>
+
+  <text x="64" y="1140" class="section">How the hybrid arm routes</text>
+  <rect x="60" y="1156" width="1080" height="127" rx="14" fill="#e3efeb" stroke="#c7ddd5"/>
+  <rect x="84" y="1183" width="124" height="52" rx="10" fill="#ffffff" stroke="#b8d4cc"/>
+  <text x="146" y="1215" text-anchor="middle" class="cardTitle">Jev first</text>
+  <path d="M218 1209 H273" stroke="#267e70" stroke-width="3" fill="none"/>
+  <path d="M273 1209 l-10 -7 v14 z" fill="#267e70"/>
+  <rect x="286" y="1183" width="222" height="52" rx="10" fill="#ffffff" stroke="#b8d4cc"/>
+  <text x="397" y="1205" text-anchor="middle" class="label">Confidence ≥ 0.80?</text>
+  <text x="397" y="1225" text-anchor="middle" class="small">Accept Jev prediction</text>
+  <path d="M519 1209 H580" stroke="#267e70" stroke-width="3" fill="none"/>
+  <path d="M580 1209 l-10 -7 v14 z" fill="#267e70"/>
+  <rect x="593" y="1183" width="225" height="52" rx="10" fill="#ffffff" stroke="#b8d4cc"/>
+  <text x="705" y="1205" text-anchor="middle" class="label">Below / unavailable</text>
+  <text x="705" y="1225" text-anchor="middle" class="small">Escalate to Foundry</text>
+  <path d="M829 1209 H890" stroke="#267e70" stroke-width="3" fill="none"/>
+  <path d="M890 1209 l-10 -7 v14 z" fill="#267e70"/>
+  <rect x="903" y="1183" width="213" height="52" rx="10" fill="#ffffff" stroke="#b8d4cc"/>
+  <text x="1009" y="1205" text-anchor="middle" class="label">Original request</text>
+  <text x="1009" y="1225" text-anchor="middle" class="small">+ Jev advisory evidence</text>
+  <text x="84" y="1262" class="small">A cascade, not a fine-tune · the hybrid makes its own Jev request for each case.</text>
+
+  <rect x="60" y="1310" width="1080" height="156" rx="14" fill="#10343d"/>
+  <text x="84" y="1347" class="cardTitle white">Read this as a pilot, not a leaderboard.</text>
+  <text x="84" y="1378" class="small mutedWhite">• Small synthetic, hand-labelled set · one repetition · no statistical-significance claim.</text>
+  <text x="84" y="1403" class="small mutedWhite">• Equal scores here do not establish general model superiority or production accuracy.</text>
+  <text x="84" y="1428" class="small mutedWhite">• Provider cost was not measured; latency includes network / authentication overhead.</text>
+  <text x="84" y="1453" class="small mutedWhite">Re-test on your own representative cases, multiple runs, and a held-out test set.</text>
+  <text x="600" y="1490" text-anchor="middle" class="small">Jev Benchmark Lab · bring your own TypeSafe key and Foundry endpoint / identity · never commit credentials</text>
+</svg>
