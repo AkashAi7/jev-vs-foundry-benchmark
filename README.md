@@ -193,3 +193,7 @@ Key code: [provider adapters](server/providers.ts), [hybrid pipeline](server/pip
 - [TypeSafe JavaScript SDK](https://docs.typesafe.ai/sdk/javascript)
 - [Foundry structured outputs](https://learn.microsoft.com/azure/foundry/openai/how-to/structured-outputs?pivots=programming-language-javascript)
 - [Foundry OpenAI API lifecycle](https://learn.microsoft.com/azure/foundry/openai/api-version-lifecycle)
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
