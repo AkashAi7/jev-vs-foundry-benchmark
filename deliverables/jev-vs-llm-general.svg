@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1885" viewBox="0 0 1200 1885" role="img" aria-labelledby="title desc">
+  <title id="title">Jev versus a general-purpose LLM: choose by task shape</title>
+  <desc id="desc">A general comparison of Jev-style fixed-choice next-token scoring and general-purpose large language model generation. Jev is strongest for fast, bounded decisions with known outcomes. A general-purpose LLM is strongest when the answer, wording, or category is not known before inference. An illustrative failure scenario shows Jev forced into the wrong support label when the taxonomy omits compliance, while an LLM identifies the missing route. A hybrid approach uses Jev for the fast path and an LLM for ambiguity and open-ended work.</desc>
+  <defs>
+    <style>
+      text { font-family: "Segoe UI", Arial, sans-serif; }
+      .eyebrow { font-size: 15px; font-weight: 700; letter-spacing: 2px; }
+      .title { font-size: 54px; font-weight: 750; letter-spacing: -1.5px; }
+      .subtitle { font-size: 21px; }
+      .section { font-size: 25px; font-weight: 700; fill: #163b45; }
+      .body { font-size: 15px; fill: #294b52; }
+      .small { font-size: 14px; fill: #526b71; }
+      .cardTitle { font-size: 20px; font-weight: 700; fill: #173d45; }
+      .metric { font-size: 34px; font-weight: 750; }
+      .label { font-size: 15px; font-weight: 650; fill: #173d45; }
+      .white { fill: #ffffff; }
+      .mutedWhite { fill: #c6dcda; }
+      .caps { font-size: 13px; font-weight: 700; letter-spacing: 1px; fill: #587179; }
+      .jev { fill: #0f756a; }
+      .llm { fill: #315e92; }
+      .amber { fill: #9a5f15; }
+      .mono { font-family: Consolas, "Courier New", monospace; font-size: 14px; font-weight: 700; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2c7d71"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="1885" fill="#f3f6f4"/>
+  <rect width="1200" height="250" fill="#10343d"/>
+  <rect x="0" y="245" width="1200" height="5" fill="#27a990"/>
+  <text x="64" y="55" class="eyebrow mutedWhite">JEV BENCHMARK LAB  /  DECISION GUIDE</text>
+  <text x="64" y="126" class="title white">Jev vs general-purpose LLM</text>
+  <text x="66" y="169" class="subtitle white">Not “which is smarter?” — which inference pattern fits the job?</text>
+  <text x="66" y="207" class="small mutedWhite">Bounded decisions favor scoring. Open-ended work favors generation. Mixed traffic favors a cascade.</text>
+  <rect x="916" y="42" width="216" height="38" rx="19" fill="#1c5157"/>
+  <text x="1024" y="67" text-anchor="middle" class="eyebrow white" style="font-size:12px;letter-spacing:1px">GENERAL COMPARISON</text>
+
+  <text x="64" y="303" class="section">Two different jobs</text>
+  <text x="64" y="330" class="small">Jev-style inference scores known choices; an LLM generates the next useful text.</text>
+
+  <rect x="60" y="352" width="520" height="252" rx="14" fill="#ffffff" stroke="#cfdfda"/>
+  <rect x="60" y="352" width="520" height="8" rx="4" fill="#14766b"/>
+  <circle cx="104" cy="406" r="24" fill="#dceee9"/>
+  <text x="104" y="413" text-anchor="middle" class="metric jev" style="font-size:22px">J</text>
+  <text x="145" y="412" class="cardTitle">Jev · fixed-choice scoring</text>
+  <text x="84" y="454" class="body">Define every valid outcome before inference.</text>
+  <rect x="84" y="477" width="96" height="34" rx="7" fill="#e2f0ec"/>
+  <rect x="191" y="477" width="113" height="34" rx="7" fill="#e2f0ec"/>
+  <rect x="315" y="477" width="90" height="34" rx="7" fill="#e2f0ec"/>
+  <text x="132" y="499" text-anchor="middle" class="mono jev">BILLING</text>
+  <text x="247" y="499" text-anchor="middle" class="mono jev">TECHNICAL</text>
+  <text x="360" y="499" text-anchor="middle" class="mono jev">SALES</text>
+  <text x="84" y="548" class="label">Output</text>
+  <text x="153" y="548" class="body">one choice + score / confidence signal</text>
+  <text x="84" y="578" class="small">Best when the answer space is small, stable, and complete.</text>
+
+  <rect x="620" y="352" width="520" height="252" rx="14" fill="#ffffff" stroke="#d4dce7"/>
+  <rect x="620" y="352" width="520" height="8" rx="4" fill="#315e92"/>
+  <circle cx="664" cy="406" r="24" fill="#e3eaf3"/>
+  <text x="664" y="413" text-anchor="middle" class="metric llm" style="font-size:21px">L</text>
+  <text x="705" y="412" class="cardTitle">LLM · open-ended generation</text>
+  <text x="644" y="454" class="body">Generate text whose exact content is not predefined.</text>
+  <rect x="644" y="477" width="452" height="55" rx="7" fill="#edf1f6"/>
+  <text x="663" y="500" class="mono llm">“This is a compliance document request.</text>
+  <text x="663" y="520" class="mono llm"> Route it to Legal Operations.”</text>
+  <text x="644" y="558" class="label">Output</text>
+  <text x="713" y="558" class="body">answer, explanation, summary, plan, or tool call</text>
+  <text x="644" y="584" class="small">Best when wording, facts, or valid outcomes can vary.</text>
+
+  <text x="64" y="658" class="section">Task-fit comparison</text>
+  <rect x="60" y="680" width="1080" height="370" rx="14" fill="#ffffff" stroke="#d8e4e0"/>
+  <rect x="60" y="680" width="1080" height="58" rx="14" fill="#e7efec"/>
+  <text x="88" y="716" class="caps">DIMENSION</text>
+  <text x="443" y="716" class="caps jev">JEV-STYLE</text>
+  <text x="813" y="716" class="caps llm">GENERAL-PURPOSE LLM</text>
+  <line x1="410" y1="680" x2="410" y2="1050" stroke="#d8e4e0"/>
+  <line x1="780" y1="680" x2="780" y2="1050" stroke="#d8e4e0"/>
+
+  <text x="88" y="773" class="label">Answer space</text>
+  <text x="443" y="773" class="body">Known and enumerated</text>
+  <text x="813" y="773" class="body">Open or only partly known</text>
+  <line x1="84" y1="793" x2="1116" y2="793" stroke="#e4ebe8"/>
+
+  <text x="88" y="832" class="label">Primary strength</text>
+  <text x="443" y="832" class="body">Fast, repeatable decisions</text>
+  <text x="813" y="832" class="body">Flexible language and reasoning</text>
+  <line x1="84" y1="852" x2="1116" y2="852" stroke="#e4ebe8"/>
+
+  <text x="88" y="891" class="label">Typical output</text>
+  <text x="443" y="891" class="body">Label, route, rank, approve</text>
+  <text x="813" y="891" class="body">Explain, extract, write, synthesize</text>
+  <line x1="84" y1="911" x2="1116" y2="911" stroke="#e4ebe8"/>
+
+  <text x="88" y="950" class="label">Key control</text>
+  <text x="443" y="950" class="body">Complete labels + calibrated gate</text>
+  <text x="813" y="950" class="body">Grounding + validation + guardrails</text>
+  <line x1="84" y1="970" x2="1116" y2="970" stroke="#e4ebe8"/>
+
+  <text x="88" y="1009" class="label">Main failure mode</text>
+  <text x="443" y="1009" class="body">Forced choice outside taxonomy</text>
+  <text x="813" y="1009" class="body">Plausible but unsupported generation</text>
+
+  <text x="64" y="1107" class="section">When Jev performs worse than an LLM</text>
+  <text x="64" y="1134" class="small">Illustrative scenario · the taxonomy is incomplete, so fixed-choice scoring is the wrong task shape.</text>
+  <rect x="60" y="1156" width="1080" height="354" rx="14" fill="#fffaf1" stroke="#e1c99f"/>
+  <rect x="60" y="1156" width="1080" height="8" rx="4" fill="#b87922"/>
+
+  <text x="88" y="1207" class="caps amber">INCOMING SUPPORT REQUEST</text>
+  <rect x="88" y="1224" width="1024" height="55" rx="9" fill="#ffffff" stroke="#ead9ba"/>
+  <text x="110" y="1257" class="cardTitle">“Please send your data processing agreement for our legal review.”</text>
+
+  <rect x="88" y="1305" width="480" height="162" rx="10" fill="#ffffff" stroke="#e1c99f"/>
+  <text x="110" y="1341" class="caps jev">JEV WITH LABELS: BILLING · TECHNICAL · SALES</text>
+  <text x="110" y="1378" class="metric amber" style="font-size:28px">Forced into “Sales”</text>
+  <text x="110" y="1409" class="body">The correct route—Compliance / Legal—is absent.</text>
+  <text x="110" y="1435" class="small">Even a confident score cannot repair a missing outcome.</text>
+
+  <rect x="592" y="1305" width="520" height="162" rx="10" fill="#ffffff" stroke="#cbd8e6"/>
+  <text x="614" y="1341" class="caps llm">LLM WITH OPEN-ENDED ROUTING INSTRUCTIONS</text>
+  <text x="614" y="1378" class="metric llm" style="font-size:28px">Identifies the missing route</text>
+  <text x="614" y="1409" class="body">Classifies the request as compliance / legal and explains why.</text>
+  <text x="614" y="1435" class="small">Better fit when novel intents must be named, not squeezed into a list.</text>
+
+  <text x="64" y="1567" class="section">The production pattern: bounded fast path + open-ended escape hatch</text>
+  <rect x="60" y="1590" width="1080" height="164" rx="14" fill="#e3efeb" stroke="#c7ddd5"/>
+  <rect x="84" y="1631" width="204" height="76" rx="10" fill="#ffffff" stroke="#b8d4cc"/>
+  <text x="186" y="1661" text-anchor="middle" class="cardTitle">1 · Jev scores</text>
+  <text x="186" y="1686" text-anchor="middle" class="small">Known choices + “other”</text>
+  <path d="M300 1669 H372" stroke="#2c7d71" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <rect x="386" y="1631" width="232" height="76" rx="10" fill="#ffffff" stroke="#b8d4cc"/>
+  <text x="502" y="1661" text-anchor="middle" class="cardTitle">2 · Gate checks fit</text>
+  <text x="502" y="1686" text-anchor="middle" class="small">Confidence + in-scope signals</text>
+  <path d="M630 1669 H702" stroke="#2c7d71" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <rect x="716" y="1631" width="400" height="76" rx="10" fill="#ffffff" stroke="#b8d4cc"/>
+  <text x="916" y="1661" text-anchor="middle" class="cardTitle">3 · LLM handles exceptions</text>
+  <text x="916" y="1686" text-anchor="middle" class="small">Ambiguity · novel intent · explanation · generation</text>
+  <text x="84" y="1736" class="small">Design rule: never deploy a closed label set without “other,” abstain, or escalation behavior.</text>
+
+  <rect x="60" y="1780" width="1080" height="78" rx="14" fill="#10343d"/>
+  <text x="84" y="1813" class="cardTitle white">Bottom line</text>
+  <text x="84" y="1839" class="small mutedWhite">Use Jev when the answer is one of these. Use an LLM when the answer must be discovered or written. Combine them when traffic contains both.</text>
+  <text x="600" y="1878" text-anchor="middle" class="small">Conceptual task-fit guide · validate quality, latency, and cost on representative held-out data</text>
+</svg>

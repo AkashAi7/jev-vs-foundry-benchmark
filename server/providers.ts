@@ -101,6 +101,21 @@ export function createFoundryCredential(config: ProviderConfig): FoundryCredenti
   return identity ? new ClientSecretCredential(identity.tenantId, identity.clientId, identity.clientSecret) : null;
 }
 
+export function createFoundryClient(
+  config: ProviderConfig,
+  transport: typeof fetch = fetch,
+  credential: FoundryCredential | null = createFoundryCredential(config),
+): OpenAI | null {
+  return config.foundryEndpoint && credential ? new OpenAI({
+    baseURL: config.foundryEndpoint,
+    apiKey: getBearerTokenProvider(credential, 'https://ai.azure.com/.default'),
+    maxRetries: 0,
+    timeout: STAGE_TIMEOUT_MS,
+    logLevel: 'off',
+    fetch: (url, init) => transport(url, { ...init, redirect: 'error' }),
+  }) : null;
+}
+
 export function createProviders(
   config: ProviderConfig,
   transport: typeof fetch = fetch,
@@ -115,14 +130,7 @@ export function createProviders(
     logLevel: 'off',
     fetch: (url, init) => transport(url, { ...init, redirect: 'error' }),
   }) : null;
-  const foundry = config.foundryEndpoint && credential ? new OpenAI({
-    baseURL: config.foundryEndpoint,
-    apiKey: getBearerTokenProvider(credential, 'https://ai.azure.com/.default'),
-    maxRetries: 0,
-    timeout: STAGE_TIMEOUT_MS,
-    logLevel: 'off',
-    fetch: (url, init) => transport(url, { ...init, redirect: 'error' }),
-  }) : null;
+  const foundry = createFoundryClient(config, transport, credential);
 
   return {
     async jev(item, scenario, signal) {

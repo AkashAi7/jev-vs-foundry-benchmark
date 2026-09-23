@@ -8,6 +8,7 @@ import { Overview } from './components/Overview';
 import { Cases } from './components/Cases';
 import { Connections } from './components/Connections';
 import { Methodology } from './components/Methodology';
+import { JevConverter } from './components/JevConverter';
 import { RunHistory } from './components/RunHistory';
 import { DemoNotice, ErrorNotice, LoadingWorkspace } from './components/Status';
 import { useBenchmark } from './hooks/useBenchmark';
@@ -18,6 +19,7 @@ const defaultOptions = (): RunOptions => ({
 const pages: Record<Page, { title: string; subtitle: string; eyebrow: string }> = {
   overview: { title: 'Decision benchmark report', subtitle: 'Foundry vs Jev vs a confidence-gated hybrid. Measured outcomes, inspectable decisions.', eyebrow: 'EVIDENCE / QUALITY / ROUTING' },
   cases: { title: 'Look closer at every choice.', subtitle: 'Follow the evidence from original input to the final decision.', eyebrow: 'CASES & RESULTS' },
+  converter: { title: 'Turn an LLM into a decision engine.', subtitle: 'Wrap Foundry or local models with fixed-choice next-token scoring.', eyebrow: 'JEV-STYLE CONVERTER' },
   methodology: { title: 'A fair test starts with the rules.', subtitle: 'A transparent, reproducible pilot for discrete decision-making.', eyebrow: 'METHODOLOGY' },
   connections: { title: 'Provider configuration', subtitle: 'Existing deployments and server-side credentials. Configuration is not verification.', eyebrow: 'CONNECTIONS' },
 };
@@ -65,6 +67,7 @@ export function App() {
           {page === 'overview' && <Overview data={data} run={run} summaries={summaries} options={options} setOptions={setOptions}
             busy={benchmark.busy} start={() => { void benchmark.start(options); }} example={example} showCases={() => navigate('cases')} />}
           {page === 'cases' && <Cases key={run?.id ?? 'library'} data={data} run={run} />}
+          {page === 'converter' && <JevConverter token={data.config.csrfToken} />}
           {page === 'methodology' && <Methodology data={data} run={run} />}
           {page === 'connections' && <Connections config={data.config} save={benchmark.configure} />}
         </>}

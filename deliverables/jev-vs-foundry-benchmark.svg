@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1885" viewBox="0 0 1200 1885" role="img" aria-labelledby="title desc">
   <title id="title">Jev versus Microsoft Foundry: practical benchmark pilot</title>
-  <desc id="desc">A one-run benchmark of 18 synthetic hand-labelled cases across support triage, incident priority, and subscription intent. All three arms achieved 18 out of 18 correct. Foundry median latency was 2459 milliseconds, Jev 398 milliseconds, and hybrid 417 milliseconds. The hybrid escalated one of 18 cases. This small pilot does not establish general superiority.</desc>
+  <desc id="desc">A one-run benchmark of 18 synthetic hand-labelled cases across support triage, incident priority, and subscription intent. All three arms achieved 18 out of 18 correct. Foundry median latency was 2459 milliseconds, Jev 398 milliseconds, and hybrid 417 milliseconds. The hybrid escalated one of 18 cases. A workload-fit guide explains when to use fixed-choice scoring, structured output, free-form generation, or a hybrid cascade. This small pilot does not establish general superiority.</desc>
   <defs>
     <style>
       text { font-family: "Segoe UI", Arial, sans-serif; }
@@ -19,7 +19,7 @@
       .code { font-size: 14px; font-weight: 700; fill: #176b61; }
     </style>
   </defs>
-  <rect width="1200" height="1500" fill="#f3f6f4"/>
+  <rect width="1200" height="1885" fill="#f3f6f4"/>
   <rect width="1200" height="242" fill="#10343d"/>
   <rect x="0" y="237" width="1200" height="5" fill="#26a78f"/>
   <text x="64" y="55" class="eyebrow mutedWhite">JEV BENCHMARK LAB  /  PRACTICAL PILOT</text>
@@ -143,11 +143,41 @@
   <text x="1009" y="1225" text-anchor="middle" class="small">+ Jev advisory evidence</text>
   <text x="84" y="1262" class="small">A cascade, not a fine-tune · the hybrid makes its own Jev request for each case.</text>
 
-  <rect x="60" y="1310" width="1080" height="156" rx="14" fill="#10343d"/>
-  <text x="84" y="1347" class="cardTitle white">Read this as a pilot, not a leaderboard.</text>
-  <text x="84" y="1378" class="small mutedWhite">• Small synthetic, hand-labelled set · one repetition · no statistical-significance claim.</text>
-  <text x="84" y="1403" class="small mutedWhite">• Equal scores here do not establish general model superiority or production accuracy.</text>
-  <text x="84" y="1428" class="small mutedWhite">• Provider cost was not measured; latency includes network / authentication overhead.</text>
-  <text x="84" y="1453" class="small mutedWhite">Re-test on your own representative cases, multiple runs, and a held-out test set.</text>
-  <text x="600" y="1490" text-anchor="middle" class="small">Jev Benchmark Lab · bring your own TypeSafe key and Foundry endpoint / identity · never commit credentials</text>
+  <text x="64" y="1330" class="section">When to use which approach</text>
+  <text x="64" y="1356" class="small">Practical task-fit guidance — distinct from the small pilot measurements above.</text>
+  <rect x="60" y="1376" width="344" height="270" rx="14" fill="#ffffff" stroke="#d8e4e0"/>
+  <rect x="428" y="1376" width="344" height="270" rx="14" fill="#ffffff" stroke="#d8e4e0"/>
+  <rect x="796" y="1376" width="344" height="270" rx="14" fill="#ffffff" stroke="#d8e4e0"/>
+  <rect x="60" y="1376" width="344" height="8" rx="4" fill="#16776c"/>
+  <rect x="428" y="1376" width="344" height="8" rx="4" fill="#5077a6"/>
+  <rect x="796" y="1376" width="344" height="8" rx="4" fill="#b07831"/>
+  <text x="82" y="1418" class="cardTitle">Fixed-choice · Jev-style</text>
+  <text x="82" y="1452" class="body">Use for a small, stable set when the</text>
+  <text x="82" y="1473" class="body">required output is a decision.</text>
+  <text x="82" y="1504" class="small">Examples: routing, triage, screening.</text>
+  <text x="82" y="1540" class="body">Not for explanations or novel text.</text>
+  <text x="82" y="1576" class="body">Include “other” / escalation; tune</text>
+  <text x="82" y="1597" class="body">confidence gates on held-out data.</text>
+  <text x="450" y="1418" class="cardTitle">Foundry generation</text>
+  <text x="450" y="1452" class="body">Use for explanations, summaries, or</text>
+  <text x="450" y="1473" class="body">answers unknown before inference.</text>
+  <text x="450" y="1504" class="body">Structured output fits known schemas</text>
+  <text x="450" y="1525" class="body">when field values are open-ended.</text>
+  <text x="450" y="1561" class="body">Validate generated content and schema;</text>
+  <text x="450" y="1582" class="body">manage access to tools and data.</text>
+  <text x="818" y="1418" class="cardTitle">Hybrid cascade</text>
+  <text x="818" y="1452" class="body">Use when routine cases are bounded</text>
+  <text x="818" y="1473" class="body">but ambiguity merits richer review.</text>
+  <text x="818" y="1504" class="body">Fast path: fixed-choice; escalate</text>
+  <text x="818" y="1525" class="body">uncertain / out-of-scope cases.</text>
+  <text x="818" y="1561" class="body">Measure end-to-end p95, escalation,</text>
+  <text x="818" y="1582" class="body">and cost across sequential stages.</text>
+  <rect x="60" y="1665" width="1080" height="185" rx="14" fill="#10343d"/>
+  <text x="84" y="1702" class="cardTitle white">Read this as a pilot, not a leaderboard.</text>
+  <text x="84" y="1733" class="small mutedWhite">• Small synthetic, hand-labelled set · one repetition · no statistical-significance claim.</text>
+  <text x="84" y="1758" class="small mutedWhite">• Equal scores here do not establish general model superiority or production accuracy.</text>
+  <text x="84" y="1783" class="small mutedWhite">• Provider cost was not measured; latency includes network / authentication overhead.</text>
+  <text x="84" y="1808" class="small mutedWhite">• Local label-token scoring reproduces a constrained inference pattern, not Jev weights / training.</text>
+  <text x="84" y="1833" class="small mutedWhite">Re-test with representative held-out cases and multiple runs before drawing conclusions.</text>
+  <text x="600" y="1874" text-anchor="middle" class="small">Jev Benchmark Lab · bring your own TypeSafe key and Foundry endpoint / identity · never commit credentials</text>
 </svg>

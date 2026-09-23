@@ -5,6 +5,8 @@ import { cases, scenarios } from '../shared/scenarios';
 import { configSchema } from './config';
 import { LabError } from './errors';
 import { exportCsv, exportJson } from './export';
+import { foundryJevDecisionSchema, scoreFoundryDecision } from './foundry-jev';
+import { jevDecisionSchema, scoreLocalDecision } from './local-jev';
 import type { Runner } from './runner';
 
 export function createApp(runner: Runner, port: number) {
@@ -47,6 +49,14 @@ export function createApp(runner: Runner, port: number) {
     if (runner.isBusy()) throw new LabError('Wait for the active run before changing connections.', 409);
     res.json(runner.config.update(configSchema.parse(req.body)));
   });
+  app.post('/api/local-jev/decide', async (req, res) => {
+    const provider = z.object({ provider: z.enum(['local', 'foundry']).default('local') }).passthrough().parse(req.body).provider;
+    if (provider === 'foundry') {
+      res.json(await scoreFoundryDecision(foundryJevDecisionSchema.parse(req.body), runner.config.snapshot()));
+      return;
+    }
+    res.json(await scoreLocalDecision(jevDecisionSchema.parse(req.body)));
+  });
   app.post('/api/runs', async (req, res) => { res.status(202).json(await runner.start(req.body)); });
   app.get('/api/runs/:id', (req, res) => res.json(runner.get(req.params.id)));
   app.post('/api/runs/:id/cancel', (req, res) => res.json(runner.cancel(req.params.id)));
@@ -62,6 +72,8 @@ export function createApp(runner: Runner, port: number) {
     if (error instanceof z.ZodError) {
       res.status(400).json({ error: req.path === '/api/config'
         ? 'Invalid connection settings. Keys must be nonempty when supplied, and model/deployment names may contain only letters, numbers, underscores, dots, and hyphens (up to 128 characters).'
+        : req.path === '/api/local-jev/decide'
+          ? 'Invalid decision request. Select Foundry or local SGLang, then provide a question and 2-20 uniquely identified choices.'
         : 'Invalid request settings. Check selected arms/scenarios, repetitions (1-10), threshold (0-1) and seed (0-2147483647).' });
     } else if (error instanceof LabError) {
       res.status(error.status).json({ error: error.message });

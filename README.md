@@ -4,7 +4,13 @@ A local visual comparison of **Foundry LLM**, **Jev**, and **Foundry + Jev** on 
 
 **Sample runs are deterministic synthetic fixtures, not measured provider performance.** Live runs call real providers; failures remain visible and never fall back to samples. No inference starts automatically.
 
-**Bring your own provider setup:** this repository contains no provider credentials. Configure your own TypeSafe key and your own Foundry endpoint, deployment, and approved identity locally. The standalone [pilot infographic](deliverables/jev-vs-foundry-benchmark.png) summarizes one completed run; [the vector source](deliverables/jev-vs-foundry-benchmark.svg) is also available.
+**Bring your own provider setup:** this repository contains no provider credentials. Configure your own TypeSafe key and your own Foundry endpoint, deployment, and approved identity locally.
+
+## Infographics
+
+- [Runnable Jev vs LLM benchmark](deliverables/jev-vs-llm-runnable-benchmark.png) — measured pilot differences, a proposed LLM-win scenario, and instructions for running the comparison ([SVG source](deliverables/jev-vs-llm-runnable-benchmark.svg)).
+- [General Jev vs LLM task-fit guide](deliverables/jev-vs-llm-general.png) — where each inference pattern fits and where Jev performs poorly with an incomplete taxonomy ([SVG source](deliverables/jev-vs-llm-general.svg)).
+- [Jev vs Microsoft Foundry pilot](deliverables/jev-vs-foundry-benchmark.png) — one completed 18-case run with methodology caveats ([SVG source](deliverables/jev-vs-foundry-benchmark.svg)).
 
 ## Run locally
 
@@ -16,6 +22,20 @@ npm run dev
 ```
 
 Open **http://127.0.0.1:4317**. The dashboard is a benchmark report: measured comparisons, scenario breakdowns, Jev confidence diagnostics and case-level evidence. Live measurement is the default; synthetic fixtures are an explicit opt-in for layout demonstrations only.
+
+### Convert a local LLM into a Jev-style decision engine
+
+The separate **Jev converter** workspace utility follows the fixed-answer scoring approach described in [Build Your Own Jev Locally](https://medium.com/coding-nexus/build-your-own-jev-locally-run-a-100-private-ai-agent-on-your-machine-bb98126d394a). It can wrap a normal Microsoft Foundry chat deployment through one-token log probabilities, or connect to a loopback SGLang server through direct `/v1/score` label-token scoring. Both lanes map a restricted-softmax distribution back to semantic choices. It does not modify or depend on the infographic deliverables.
+
+The same implementation is available as a CLI. Save the endpoint, question, and 2-26 `{ "id", "description" }` choices in a JSON file, then run:
+
+```powershell
+npm run jev:decide -- .\decision.json
+```
+
+Keep an `escalate` choice when the options are not exhaustive. The returned confidence is relative preference among the declared choices, not calibrated correctness. The reusable project skill is in `.agents/skills/llm-to-jev/`.
+
+For Foundry, use `{ "provider": "foundry", "deployment": "YOUR_DEPLOYMENT", ... }`; the existing account endpoint and Microsoft Entra identity are reused from Connections. The deployment must support chat `logprobs`, and all choice labels must appear in the returned top-token set. For SGLang, use `{ "provider": "local", "endpoint": "http://127.0.0.1:30000", ... }`.
 
 ```powershell
 npm test

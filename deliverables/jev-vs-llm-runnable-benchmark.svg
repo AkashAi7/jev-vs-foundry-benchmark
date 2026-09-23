@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1885" viewBox="0 0 1200 1885" role="img" aria-labelledby="title desc">
+  <title id="title">Jev versus LLM: run the benchmark yourself</title>
+  <desc id="desc">A runnable comparison of Jev-style fixed-choice scoring and a general-purpose LLM. In one small closed-set pilot, both achieved 18 of 18 correct, while Jev median latency was 398 milliseconds and the hosted LLM median latency was 2459 milliseconds. A proposed open-set challenge shows where an LLM can win when the correct route is missing from the fixed taxonomy. The public Jev Benchmark Lab repository lets users select tasks, comparison arms, repetitions, and a confidence gate, then inspect accuracy, macro F1, latency, tokens, routing, and case-level evidence.</desc>
+  <defs>
+    <style>
+      text { font-family: "Segoe UI", Arial, sans-serif; }
+      .eyebrow { font-size: 15px; font-weight: 700; letter-spacing: 2px; }
+      .title { font-size: 55px; font-weight: 750; letter-spacing: -1.5px; }
+      .subtitle { font-size: 21px; }
+      .section { font-size: 25px; font-weight: 700; fill: #163b45; }
+      .body { font-size: 15px; fill: #294b52; }
+      .small { font-size: 14px; fill: #526b71; }
+      .cardTitle { font-size: 20px; font-weight: 700; fill: #173d45; }
+      .metric { font-size: 42px; font-weight: 750; }
+      .label { font-size: 15px; font-weight: 650; fill: #173d45; }
+      .caps { font-size: 13px; font-weight: 700; letter-spacing: 1px; fill: #587179; }
+      .white { fill: #ffffff; }
+      .mutedWhite { fill: #c6dcda; }
+      .jev { fill: #0f756a; }
+      .llm { fill: #315e92; }
+      .amber { fill: #a36113; }
+      .mono { font-family: Consolas, "Courier New", monospace; font-size: 15px; font-weight: 700; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2c7d71"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="1885" fill="#f3f6f4"/>
+  <rect width="1200" height="250" fill="#10343d"/>
+  <rect x="0" y="245" width="1200" height="5" fill="#27a990"/>
+  <text x="64" y="55" class="eyebrow mutedWhite">JEV BENCHMARK LAB  /  REPRODUCIBLE COMPARISON</text>
+  <text x="64" y="126" class="title white">Jev vs LLM — run it yourself</text>
+  <text x="66" y="169" class="subtitle white">Same tasks. Same labels. Same protocol. Inspect every prediction.</text>
+  <text x="66" y="207" class="small mutedWhite">Measure the trade-off instead of assuming it: quality · latency · tokens · routing · failures.</text>
+  <rect x="927" y="42" width="205" height="38" rx="19" fill="#1c5157"/>
+  <text x="1029" y="67" text-anchor="middle" class="eyebrow white" style="font-size:12px;letter-spacing:1px">PUBLIC BENCHMARK</text>
+
+  <text x="64" y="303" class="section">What one closed-set pilot observed</text>
+  <text x="64" y="330" class="small">18 synthetic, hand-labelled cases · three decision tasks · one repetition · results are not a universal leaderboard.</text>
+
+  <rect x="60" y="352" width="520" height="240" rx="14" fill="#ffffff" stroke="#cfdfda"/>
+  <rect x="60" y="352" width="520" height="8" rx="4" fill="#14766b"/>
+  <text x="84" y="397" class="caps jev">JEV · FIXED-CHOICE SCORING</text>
+  <text x="84" y="452" class="metric jev">18 / 18 correct</text>
+  <text x="84" y="484" class="label">100% accuracy · 1.000 macro F1</text>
+  <text x="84" y="535" class="metric jev" style="font-size:34px">398 ms p50</text>
+  <text x="84" y="566" class="small">539 ms p95 · successful observations</text>
+
+  <rect x="620" y="352" width="520" height="240" rx="14" fill="#ffffff" stroke="#d4dce7"/>
+  <rect x="620" y="352" width="520" height="8" rx="4" fill="#315e92"/>
+  <text x="644" y="397" class="caps llm">HOSTED LLM · STRUCTURED OUTPUT</text>
+  <text x="644" y="452" class="metric llm">18 / 18 correct</text>
+  <text x="644" y="484" class="label">100% accuracy · 1.000 macro F1</text>
+  <text x="644" y="535" class="metric llm" style="font-size:34px">2,459 ms p50</text>
+  <text x="644" y="566" class="small">6,026 ms p95 · successful observations</text>
+
+  <rect x="60" y="616" width="1080" height="86" rx="14" fill="#e4efeb" stroke="#c8ddd5"/>
+  <text x="84" y="653" class="cardTitle">Same quality in this run; Jev’s median response was 6.2× faster.</text>
+  <text x="84" y="680" class="small">That is a workload-specific observation—not proof that either approach wins on other data, models, networks, or tasks.</text>
+
+  <text x="64" y="760" class="section">The next scenario to test: incomplete taxonomy</text>
+  <text x="64" y="787" class="small">Proposed open-set challenge · expected to favor an LLM unless Jev has an “other” / abstain route.</text>
+  <rect x="60" y="809" width="1080" height="300" rx="14" fill="#fffaf1" stroke="#e1c99f"/>
+  <rect x="60" y="809" width="1080" height="8" rx="4" fill="#b87922"/>
+  <text x="84" y="858" class="caps amber">TEST INPUT</text>
+  <rect x="84" y="875" width="1032" height="58" rx="9" fill="#ffffff" stroke="#ead9ba"/>
+  <text x="106" y="911" class="cardTitle">“Send your data processing agreement for our legal review.”</text>
+
+  <rect x="84" y="959" width="492" height="116" rx="10" fill="#ffffff" stroke="#e1c99f"/>
+  <text x="106" y="992" class="caps jev">JEV LABELS: BILLING · TECHNICAL · SALES</text>
+  <text x="106" y="1028" class="cardTitle amber">Bad fit: correct route is missing</text>
+  <text x="106" y="1054" class="small">Score cannot invent Compliance / Legal.</text>
+
+  <rect x="600" y="959" width="516" height="116" rx="10" fill="#ffffff" stroke="#cbd8e6"/>
+  <text x="622" y="992" class="caps llm">LLM: OPEN-ENDED ROUTING</text>
+  <text x="622" y="1028" class="cardTitle llm">Good fit: identify a novel route</text>
+  <text x="622" y="1054" class="small">Generate Compliance / Legal and explain the choice.</text>
+
+  <text x="64" y="1167" class="section">Run the comparison on the tasks that matter to you</text>
+  <rect x="60" y="1190" width="1080" height="337" rx="14" fill="#ffffff" stroke="#d8e4e0"/>
+
+  <circle cx="108" cy="1244" r="24" fill="#dceee9"/>
+  <text x="108" y="1251" text-anchor="middle" class="cardTitle jev">1</text>
+  <text x="148" y="1243" class="cardTitle">Choose the protocol</text>
+  <text x="148" y="1268" class="small">Support triage · incident priority · request intent · 1–10 repetitions · deterministic seed</text>
+
+  <path d="M108 1278 V1313" stroke="#2c7d71" stroke-width="3" marker-end="url(#arrow)"/>
+  <circle cx="108" cy="1354" r="24" fill="#dceee9"/>
+  <text x="108" y="1361" text-anchor="middle" class="cardTitle jev">2</text>
+  <text x="148" y="1353" class="cardTitle">Select comparison arms</text>
+  <text x="148" y="1378" class="small">Hosted LLM · Jev · hybrid cascade · adjustable Jev confidence gate</text>
+
+  <path d="M108 1388 V1423" stroke="#2c7d71" stroke-width="3" marker-end="url(#arrow)"/>
+  <circle cx="108" cy="1464" r="24" fill="#dceee9"/>
+  <text x="108" y="1471" text-anchor="middle" class="cardTitle jev">3</text>
+  <text x="148" y="1463" class="cardTitle">Audit the evidence</text>
+  <text x="148" y="1488" class="small">Accuracy · macro F1 · p50 / p95 latency · token usage · escalation · errors · case-level stages</text>
+
+  <rect x="742" y="1223" width="350" height="265" rx="12" fill="#10343d"/>
+  <text x="770" y="1263" class="caps mutedWhite">LOCAL-FIRST RUNNER</text>
+  <text x="770" y="1307" class="mono white">git clone</text>
+  <text x="770" y="1335" class="mono mutedWhite" style="font-size:13px">github.com/AkashAi7/</text>
+  <text x="770" y="1358" class="mono mutedWhite" style="font-size:13px">jev-vs-foundry-benchmark</text>
+  <text x="770" y="1401" class="mono white">npm install</text>
+  <text x="770" y="1433" class="mono white">npm run dev</text>
+  <text x="770" y="1466" class="small mutedWhite">Open http://127.0.0.1:4317</text>
+
+  <text x="64" y="1585" class="section">Why the runner is useful</text>
+  <rect x="60" y="1608" width="344" height="165" rx="14" fill="#ffffff" stroke="#d8e4e0"/>
+  <rect x="428" y="1608" width="344" height="165" rx="14" fill="#ffffff" stroke="#d8e4e0"/>
+  <rect x="796" y="1608" width="344" height="165" rx="14" fill="#ffffff" stroke="#d8e4e0"/>
+  <text x="84" y="1650" class="cardTitle">Comparable</text>
+  <text x="84" y="1682" class="body">Every arm receives the same saved</text>
+  <text x="84" y="1704" class="body">inputs, labels, rubric, and order.</text>
+  <text x="84" y="1743" class="small">No silent sample fallback.</text>
+  <text x="452" y="1650" class="cardTitle">Inspectable</text>
+  <text x="452" y="1682" class="body">See predictions, provider stages,</text>
+  <text x="452" y="1704" class="body">confidence, timing, and failures.</text>
+  <text x="452" y="1743" class="small">Export reproducible JSON / CSV.</text>
+  <text x="820" y="1650" class="cardTitle">Private by default</text>
+  <text x="820" y="1682" class="body">Runs and credentials stay on the</text>
+  <text x="820" y="1704" class="body">local machine. Bring your providers.</text>
+  <text x="820" y="1743" class="small">Never commit keys or local results.</text>
+
+  <a href="https://github.com/AkashAi7/jev-vs-foundry-benchmark" target="_blank">
+    <rect x="60" y="1801" width="1080" height="57" rx="14" fill="#10343d"/>
+    <text x="600" y="1837" text-anchor="middle" class="cardTitle white">github.com/AkashAi7/jev-vs-foundry-benchmark  →</text>
+  </a>
+  <text x="600" y="1878" text-anchor="middle" class="small">Public source · local runner · bring your own credentials · validate on representative held-out data</text>
+</svg>

@@ -1,10 +1,11 @@
-import { ArrowUpRight, ChartNoAxesCombined, CircleHelp, FlaskConical, LayoutDashboard, ListFilter, Plug, Radio } from 'lucide-react';
+import { ArrowUpRight, ChartNoAxesCombined, CircleHelp, Cpu, FlaskConical, LayoutDashboard, ListFilter, Plug, Radio } from 'lucide-react';
 import type { PublicConfig } from '../../shared/types';
 
-export type Page = 'overview' | 'cases' | 'methodology' | 'connections';
+export type Page = 'overview' | 'cases' | 'converter' | 'methodology' | 'connections';
 const items = [
   { id: 'overview', label: 'Overview', icon: LayoutDashboard },
   { id: 'cases', label: 'Cases & results', icon: ListFilter },
+  { id: 'converter', label: 'Jev converter', icon: Cpu },
   { id: 'methodology', label: 'Methodology', icon: FlaskConical },
   { id: 'connections', label: 'Connections', icon: Plug },
 ] as const;

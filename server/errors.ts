@@ -15,6 +15,12 @@ export function safeError(error: unknown): string {
     if (['CredentialUnavailableError', 'AuthenticationRequiredError'].includes(current.name)) {
       return 'The selected Microsoft Entra credential is unavailable or needs sign-in. For vscode mode, sign in through the Azure Resources extension on this machine for the configured AZURE_TENANT_ID, then retry explicitly. For service-principal mode, check the three AZURE identity variables. No alternative identity or API-key fallback was attempted.';
     }
+    if (/run ['"]?az login/i.test(current.message)) {
+      return 'Azure CLI authentication is selected but no signed-in az session is available. Run az login in this environment, then retry. No alternate identity was attempted.';
+    }
+    if (/token tenant .* does not match resource tenant/i.test(current.message)) {
+      return 'The selected Microsoft Entra identity issued a token for a different tenant than the Foundry resource. Set AZURE_TENANT_ID to the resource tenant, sign in through the selected authentication mode, restart, and retry.';
+    }
   }
   if (error instanceof Error && ['AbortError', 'TimeoutError', 'APITimeoutError', 'APIConnectionTimeoutError'].includes(error.name)) {
     return 'Request timed out or was cancelled. No automatic retry was made.';

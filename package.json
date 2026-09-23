@@ -9,6 +9,7 @@
     "build": "tsc --noEmit && vite build",
     "start": "tsx server/index.ts --production",
     "check:foundry": "tsx server/check-foundry.ts",
+    "jev:decide": "tsx server/jev-decide.ts",
     "typecheck": "tsc --noEmit",
     "test": "tsx --test tests/*.test.ts"
   },
